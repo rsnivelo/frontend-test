@@ -1,0 +1,26 @@
+<h2>Departments <a routerLink="/department-form" class="btn btn-primary btn-sm">Create record</a></h2>
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let department of departments">
+        <th scope="row">{{department.id}}</th>
+        <td>{{department.name}}</td>
+        <td>{{department.description}}</td>
+        <td>{{department.status}}</td>
+        <td>
+          <button (click)="updateDepartment(department.id)" class="btn btn-secondary  ">Edit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="alert alert-primary" *ngIf="departments && departments.length == 0">
+    No existen registros actualmente.
+  </div>

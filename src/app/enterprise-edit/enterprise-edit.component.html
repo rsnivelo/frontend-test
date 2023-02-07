@@ -1,0 +1,37 @@
+<div class="col-md-6 offset-md-3 container">
+    <h4 class="text-center">Edit enterprise</h4>
+    <form (ngSubmit)="onSubmit()" #enterpriseForm="ngForm">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" 
+                [(ngModel)]="enterprise.name" required placeholder="Enterprise name" #name="ngModel">
+            <div class="alert alert-warning" *ngIf="name.invalid && (name.dirty || name.touched)">
+                <div *ngIf="name.errors['required']">Name is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="address">Address:</label>
+            <input type="text" class="form-control" id="address" name="address" 
+                [(ngModel)]="enterprise.address" required placeholder="Enterprise address" #address="ngModel">
+            <div class="alert alert-warning" *ngIf="address.invalid && (address.dirty || address.touched)">
+                <div *ngIf="address.errors['required']">Address is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone:</label>
+            <input type="text" class="form-control" id="phone" name="phone" 
+                [(ngModel)]="enterprise.phone" placeholder="Enterprise phone" required #phone="ngModel">
+            <div class="alert alert-warning" *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+                <div *ngIf="phone.errors['required']">Phone is required</div>
+            </div>
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="status" name="status" [(ngModel)]="enterprise.status">
+            <label for="status" class="form-check-label">Status:</label>
+        </div>
+        <div class="btn-group">
+            <button class="btn btn-success btn-block mr-1" [disabled]="!enterpriseForm.form.valid">Save</button>
+            <a routerLink="/enterprises" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>

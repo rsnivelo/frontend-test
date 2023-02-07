@@ -1,0 +1,26 @@
+<h2>Enterprises <a routerLink="/enterprise-form" class="btn btn-primary btn-sm">Create record</a></h2>
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let enterprise of enterprises">
+        <th scope="row">{{enterprise.id}}</th>
+        <td>{{enterprise.name}}</td>
+        <td>{{enterprise.address}}</td>
+        <td>{{enterprise.status}}</td>
+        <td>
+          <button (click)="updateEnterprise(enterprise.id)" class="btn btn-secondary  ">Edit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="alert alert-primary" *ngIf="enterprises && enterprises.length == 0">
+    No existen registros actualmente.
+  </div>

@@ -1,0 +1,50 @@
+<div class="col-md-6 offset-md-3">
+    <h4 class="text-center">Create department</h4>
+    <form (ngSubmit)="onSubmit()" #departmentForm="ngForm">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" 
+                [(ngModel)]="department.name" required placeholder="Department name" #name="ngModel">
+            <div class="alert alert-warning" *ngIf="name.invalid && (name.dirty || name.touched)">
+                <div *ngIf="name.errors['required']">Name is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <input type="text" class="form-control" id="description" name="description" 
+                [(ngModel)]="department.description" required placeholder="Department description" #description="ngModel">
+            <div class="alert alert-warning" *ngIf="description.invalid && (description.dirty || description.touched)">
+                <div *ngIf="description.errors['required']">Description is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone:</label>
+            <input type="text" class="form-control" id="phone" name="phone" 
+                [(ngModel)]="department.phone" placeholder="Department phone" required #phone="ngModel">
+            <div class="alert alert-warning" *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+                <div *ngIf="phone.errors['required']">Phone is required</div>
+            </div>
+        </div>
+        <div class="form-group" *ngIf="enterprises && enterprises.length > 0">
+            <label for="enterpriseId">Enterprise</label>
+            <select class="form-select" aria-label=".form-select-md example" [(ngModel)]="department.enterpriseId" 
+                    name="enterpriseId" id="enterpriseId" #enterpriseId="ngModel">
+                <option >Choose an enterprise</option>
+                <option *ngFor="let e of enterprises" [value]="e.id">
+                    {{ e.name }}
+                </option>
+              </select>
+            <div class="alert alert-warning" *ngIf="enterpriseId.invalid && (enterpriseId.dirty || enterpriseId.touched)">
+                <div *ngIf="enterpriseId.errors['required']">Enterprise is required</div>
+            </div>
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="status" name="status" [(ngModel)]="department.status">
+            <label for="status" class="form-check-label">Status:</label>
+        </div>
+        <div class="btn-group">
+            <button class="btn btn-success btn-block mr-1" [disabled]="!departmentForm.form.valid">Save</button>
+            <a routerLink="/departments" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,67 @@
+<div class="col-md-6 offset-md-3">
+    <h4 class="text-center">Create employee</h4>
+    <form (ngSubmit)="onSubmit()" #employeeForm="ngForm">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" 
+                [(ngModel)]="employee.name" required placeholder="Employee name" #name="ngModel">
+            <div class="alert alert-warning" *ngIf="name.invalid && (name.dirty || name.touched)">
+                <div *ngIf="name.errors['required']">Name is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="surname">Surname:</label>
+            <input type="text" class="form-control" id="surname" name="surname" 
+                [(ngModel)]="employee.surname" required placeholder="Employee Surname" #surname="ngModel">
+            <div class="alert alert-warning" *ngIf="surname.invalid && (surname.dirty || surname.touched)">
+                <div *ngIf="surname.errors['required']">Surname is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" name="email" 
+                [(ngModel)]="employee.email" placeholder="Email" required #email="ngModel">
+            <div class="alert alert-warning" *ngIf="email.invalid && (email.dirty || email.touched)">
+                <div *ngIf="email.errors['required']">Email is required</div>
+            </div>
+        </div>
+        <div class="form-group" *ngIf="departments && departments.length > 0">
+            <label for="enterpriseId">Department</label>
+            <select class="form-select" aria-label=".form-select-md example" [(ngModel)]="employee.departmentId" 
+                    name="enterpriseId" id="enterpriseId" #departmentId="ngModel" required>
+                <option >Choose a department</option>
+                <option *ngFor="let d of departments" [value]="d.id">
+                    {{ d.enterprise }} - {{ d.name }}
+                </option>
+              </select>
+            <div class="alert alert-warning" *ngIf="departmentId.invalid && (departmentId.dirty || departmentId.touched)">
+                <div *ngIf="departmentId.errors['required']">Department is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" class="form-control" id="age" name="age" 
+                [(ngModel)]="employee.age" placeholder="Age" required #age="ngModel">
+            <div class="alert alert-warning" *ngIf="age.invalid && (age.dirty || age.touched)">
+                <div *ngIf="age.errors['required']">Age is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="position">Position:</label>
+            <input type="text" class="form-control" id="position" name="position" 
+                [(ngModel)]="employee.position" placeholder="Position" required #position="ngModel">
+            <div class="alert alert-warning" *ngIf="position.invalid && (position.dirty || position.touched)">
+                <div *ngIf="position.errors['required']">Position is required</div>
+            </div>
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="status" name="status" [(ngModel)]="employee.status">
+            <label for="status" class="form-check-label">Status:</label>
+        </div>
+        
+        <div class="btn-group">
+            <button class="btn btn-success btn-block mr-1" [disabled]="!employeeForm.form.valid">Save</button>
+            <a routerLink="/departments" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
