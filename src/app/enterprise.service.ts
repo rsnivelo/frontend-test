@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.development';
 import { Enterprise } from './enterprise';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { Enterprise } from './enterprise';
 })
 export class EnterpriseService {
 
-  private baseURL = "http://localhost:8080/api/v1/enterprises";
+  private baseURL = environment.apiURL;
 
   constructor(private httpClient: HttpClient) {}
 
